@@ -36,16 +36,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug_episodic\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug_episodic\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug_episodic\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug_episodic\</IntDir>
     <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PreBuildEventUseInBuild>
     <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PreLinkEventUseInBuild>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateManifest>
     <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PostBuildEventUseInBuild>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release_episodic\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release_episodic\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release_episodic\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release_episodic\</IntDir>
     <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</PreBuildEventUseInBuild>
     <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</PreLinkEventUseInBuild>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
@@ -55,6 +55,7 @@
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;../../vr_io</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;../../vr_io</LibraryPath>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Client</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Client</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
@@ -62,15 +63,16 @@
       </Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Message>Copying to d:\steam\steamapps\SourceMods\virtualhalf-life\bin\</Message>
-      <Command>if exist "d:\steam\steamapps\SourceMods\virtualhalf-life\bin\client.dll" attrib -r "d:\steam\steamapps\SourceMods\virtualhalf-life\bin\client.dll"
-copy "$(TargetDir)"client.dll "d:\steam\steamapps\SourceMods\virtualhalf-life\bin"
+      <Message>Copying to d:\steam\steamapps\SourceMods\halflife-vr\bin\</Message>
+      <Command>if exist "d:\steam\steamapps\SourceMods\halflife-vr\bin\client.dll" attrib -r "d:\steam\steamapps\SourceMods\halflife-vr\bin\client.dll"
+copy "$(TargetDir)"client.dll "d:\steam\steamapps\SourceMods\halflife-vr\bin"
 </Command>
-      <Outputs>d:\steam\steamapps\SourceMods\virtualhalf-life\bin\client.dll;%(Outputs)</Outputs>
+      <Outputs>d:\steam\steamapps\SourceMods\halflife-vr\bin\client.dll;%(Outputs)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
     </CustomBuildStep>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\hl2;.\hl2\elements;..\..\game\shared\hl2;..\..\game\shared\episodic;..\..\public;.\;..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;..\..\vgui2\include;..\..\vgui2\controls;..\..\game\shared;.\game_controls;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\vr_io;.\hl2;.\hl2\elements;..\..\game\shared\hl2;..\..\game\shared\episodic;..\..\public;.\;..\..\common;..\..\public\tier0;..\..\public\tier1;..\..\vgui2\include;..\..\vgui2\controls;..\..\game\shared;.\game_controls;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32;_DEBUG;DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;NO_STRING_T;CLIENT_DLL;VECTOR;VERSION_SAFE_STEAM_API_INTERFACES;PROTECTED_THINGS_ENABLE;fopen=dont_use_fopen;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;ENABLE_HTMLWINDOW;HL2_CLIENT_DLL;HL2_EPISODIC;SP_SDK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>true</MinimalRebuild>
@@ -107,7 +109,7 @@ copy "$(TargetDir)"client.dll "d:\steam\steamapps\SourceMods\virtualhalf-life\bi
       <OutputFile>$(OutDir)Client.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib\common;..\..\lib\public;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreSpecificDefaultLibraries>libc;libcd;libcmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>libc;libcd;libcmtd</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
@@ -139,13 +141,14 @@ copy "$(TargetDir)"client.dll "d:\steam\steamapps\SourceMods\virtualhalf-life\bi
       </Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Message>C:\Program Files (x86)\Steam\steamapps\SourceMods\virtualhalf-life\bin\</Message>
-      <Command>if exist "C:\Program Files (x86)\Steam\steamapps\sourcemods\halflife-vr\bin\client.dll" attrib -r "C:\Program Files (x86)\Steam\steamapps\sourcemods\halflife-vr\bin\client.dll"
-copy "$(TargetDir)client.dll" "C:\Program Files (x86)\Steam\steamapps\sourcemods\halflife-vr\bin"
+      <Message>D:\Program Files (x86)\Steam\steamapps\SourceMods\halflife-vr\bin\</Message>
+      <Command>if exist "D:\Program Files (x86)\Steam\steamapps\sourcemods\halflife-vr\bin\client.dll" attrib -r "D:\Program Files (x86)\Steam\steamapps\sourcemods\halflife-vr\bin\client.dll"
+copy "$(TargetDir)client.dll" "D:\Program Files (x86)\Steam\steamapps\sourcemods\halflife-vr\bin"
 
-copy "$(SolutionDir)vr_io\*.dll" "C:\Program Files (x86)\Steam\steamapps\sourcemods\halflife-vr\bin"
+copy "$(SolutionDir)vr_io\*.dll" "D:\Program Files (x86)\Steam\steamapps\sourcemods\halflife-vr\bin"
 </Command>
-      <Outputs>C:\Program Files (x86)\Steam\steamapps\SourceMods\virtualhalf-life\bin\client.dll;C:\Program Files (x86)\Steam\steamapps\SourceMods\virtualhalf-life\bin\client.pdb;%(Outputs)</Outputs>
+      <Outputs>D:\Program Files (x86)\Steam\steamapps\SourceMods\halflife-vr\bin\client.dll;D:\Program Files (x86)\Steam\steamapps\SourceMods\halflife-vr\bin\client.pdb;%(Outputs)</Outputs>
+      <Inputs>$(TargetPath)</Inputs>
     </CustomBuildStep>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
