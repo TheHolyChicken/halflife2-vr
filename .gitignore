@@ -1,7 +1,14 @@
+*.filters
 *.obj
+*.suo
 *.tlog
 *.user
-*.filters
+*.exe
+*.pdb
+*.old
+*.suo
+*.sdf
+*.ipch
 src/game/server/hl2mp
 src/game/client/Release_Episodic
 src/game/client/Debug_Episodic
